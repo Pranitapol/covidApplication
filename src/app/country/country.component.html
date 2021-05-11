@@ -1,0 +1,56 @@
+<div class="container">
+
+    <select #selectval class="select">
+        <option value="country">country</option>
+        <option value="death"> death</option>
+        <option value="recovered">recovered</option>
+        <option value="one-death-per-people">one-death-per-people</option>
+        <option value="one-case-per-people">one-case-per-people</option>
+    </select>
+
+    <button (click)="sortBy(selectval.value)">sort by</button>
+</div>
+
+<div class="display">
+    <pagination-controls previousLabel="Prev" nextLabel="Next" id="listing_pagination" max-Size="5"
+        (pageChange)="page = $event" class="pagein"></pagination-controls>
+    <div class="panel" *ngFor="let count of country |paginate: { id: 'listing_pagination',
+itemsPerPage: 10,
+currentPage: page,
+totalItems: totalRecords}">
+        <table>
+            <tr>
+                <img src="{{count.countryInfo.flag}}" />
+
+            </tr>
+            <tr>
+                country:{{count.country}}
+            </tr>
+            <tr>
+                cases:{{count.cases}}
+            </tr>
+            <tr>
+                today's cases:{{count.todayCases}}
+            </tr>
+            <tr>
+                deaths:{{count.deaths}}
+            </tr>
+            <tr>
+                recovered: {{count.recovered}}
+            </tr>
+            <tr>
+                activeCases:{{count.active}}
+            </tr>
+            <tr>
+                activeCases:{{count.oneCasePerPeople}}
+            </tr>
+
+        </table>
+
+
+
+
+
+    </div>
+
+</div>

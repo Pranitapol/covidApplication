@@ -1,0 +1,23 @@
+.panel{
+    border:1px solid;
+    width: 50%;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkgray;
+    margin-top: 5px;
+}
+select{
+    padding: 8px;
+    margin:6px;
+}
+button{
+    padding: 8px 16px;
+    margin: 8px;
+    font-size: 17px;
+}
+.container{
+    margin: 15px;
+    
+}
