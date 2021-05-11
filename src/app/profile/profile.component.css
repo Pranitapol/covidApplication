@@ -1,0 +1,12 @@
+.container{
+padding: 10px;
+}
+table{
+    padding:10px;
+    font-size: 20px;
+    float: left;
+    background-color: cadetblue;
+}
+img{
+    float: right;
+}

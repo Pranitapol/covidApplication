@@ -1,0 +1,69 @@
+<div class="container">
+    <header>
+  <h1>angular App</h1>
+  <input type="text" #val name="user" placeholder="enter value">
+  <select #selectVal class='select'>
+  <option value="user" #u>user</option>  
+  <option value="repository" #r>repos</option>  
+    
+  
+  </select>
+  <button (click)="getUser(val.value,selectVal.value)">submit</button> 
+    </header>
+   
+    <div *ngIf="selectVal.value=='user';then block1; else block2"> </div>
+    <div>
+    <ng-template #block1>    
+      <pagination-controls previousLabel="Prev"  nextLabel="Next" id="listing_pagination" max-Size="5" 
+      (pageChange)="page = $event" class="pagein"></pagination-controls>
+    
+      <ul class="display" (click)="onSelect(user.login)"  *ngFor="let user of users |  paginate: { id: 'listing_pagination',
+      itemsPerPage: 10,
+      currentPage: page,
+      totalItems: totalRecords}">
+      <table>
+        
+          <tr style="margin: 30px; text-align: center;">{{user.login}}</tr>
+          <a href=""><tr style="margin: 30px; text-align: center;"> {{user.repos_url}}</tr></a>     
+       <tr style="margin: 30px; text-align: center;"> <img src="{{user.avatar_url}}" width="150px"/></tr>
+
+     
+      </table>
+      </ul>
+
+    </ng-template>
+
+    <ng-template #block2>
+      <pagination-controls previousLabel="Prev"  nextLabel="Next" id="listing_pagination" max-Size="5" 
+      (pageChange)="page = $event" class="pagein"></pagination-controls>
+   
+      <ul class="display" (click)="selectRepos(repos.owner.login,repos.name)" *ngFor="let repos of repos | paginate: { id: 'listing_pagination',
+      itemsPerPage: 10,
+      currentPage: page,
+      totalItems: totalRecords}" >
+      <table>
+        <tr  style="margin: 30px; text-align: center;"> 
+       {{repos.name}}</tr>
+         <tr> {{repos.owner.login}}</tr>
+        <tr> <a href="{{repos.owner.repos_url}}">{{repos.owner.repos_url}}</a></tr>
+      
+          
+       <tr>
+       <a href="repos.owner.avatar_url" > <img class="img" src="{{repos.owner.avatar_url}}" width="150px"/></a>
+      </tr>
+      </table>
+   
+      </ul>
+   
+    </ng-template>
+     
+
+  </div>
+ 
+  </div>
+  
+  
+  
+  
+  
+ <router-outlet></router-outlet>
